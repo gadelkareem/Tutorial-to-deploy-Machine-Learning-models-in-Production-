@@ -1,21 +1,12 @@
-import os
-import json
-import numpy as np
 import pandas as pd
 import dill as pickle
 import warnings
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.base import BaseEstimator, TransformerMixin
 
 warnings.filterwarnings("ignore")
-
-with warnings.catch_warnings():
-    warnings.filterwarnings("ignore")
-    from sklearn.externals import joblib
-    from sklearn.model_selection import train_test_split, GridSearchCV
-    from sklearn.base import BaseEstimator, TransformerMixin
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn.pipeline import make_pipeline
-
-from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class PreProcessing(BaseEstimator, TransformerMixin):
@@ -118,7 +109,3 @@ with open('models/' + filename, 'wb') as file:
 with open('models/' + filename, 'rb') as f:
     loaded_model = pickle.load(f)
 print(loaded_model.predict(test_df))
-
-
-
-
